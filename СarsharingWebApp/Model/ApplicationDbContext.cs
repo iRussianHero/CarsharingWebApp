@@ -7,6 +7,15 @@ namespace СarsharingWebApp.Model
     {
         public DbSet<Person> Person { get; set; }
         public DbSet<CarOwner> CarOwner { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<CarBrand> CarBrand { get; set; }
+        public DbSet<CarModel> CarModel { get; set; }
+        public DbSet<CarCondition> CarCondition { get; set; }
+        public DbSet<OrderCost> OrderCost { get; set; }
+        public DbSet<OrderRate> OrderRate { get; set; }
+        public DbSet<CarService> CarService { get; set; }
+        public DbSet<Car> Car { get; set; }
+        public DbSet<Order> Order { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
