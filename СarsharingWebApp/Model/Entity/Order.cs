@@ -1,16 +1,21 @@
-﻿namespace СarsharingWebApp.Model.Entity
+﻿using System.Text.Json.Serialization;
+
+namespace СarsharingWebApp.Model.Entity
 {
     public class Order
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public int CarId { get; set; }
         public int OrderRateId { get; set; }
         public DateTime StartRent { get; set; }
         public DateTime StopRent { get; set; }
         public int StartMilage { get; set; }
         public int StopMilage { get; set; }
         public double Account { get; set; }
+
+        public int CarId { get; set; }
+        [JsonIgnore]
+        public Car? Car { get; set; }
 
 
         public Order()
