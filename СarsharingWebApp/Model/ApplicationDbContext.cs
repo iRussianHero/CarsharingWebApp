@@ -13,7 +13,7 @@ namespace СarsharingWebApp.Model
         public DbSet<CarCondition> CarCondition { get; set; }
         public DbSet<OrderCost> OrderCost { get; set; }
         public DbSet<OrderRate> OrderRate { get; set; }
-        public DbSet<CarService> CarService { get; set; }
+        public DbSet<CarServ> CarServ { get; set; }
         public DbSet<Car> Car { get; set; }
         public DbSet<Order> Order { get; set; }
 

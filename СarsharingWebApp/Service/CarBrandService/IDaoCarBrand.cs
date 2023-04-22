@@ -2,7 +2,7 @@
 
 namespace OrderApiApp.Service.ClientService
 {
-    public interface IDaoCarCondition
+    public interface IDaoCarBrand
     {
         Task<List<CarBrand>> GetAllAsync();
         Task<CarBrand> AddAsync(CarBrand carBrand);
