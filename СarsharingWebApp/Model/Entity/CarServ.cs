@@ -1,6 +1,6 @@
 ﻿namespace СarsharingWebApp.Model.Entity
 {
-    public class CarService
+    public class CarServ
     {
         public int Id { get; set; }
         public DateTime ServiceDay { get; set; }
@@ -9,7 +9,7 @@
         public int CurrentMilage { get; set; }
         public int NextServiceMilage { get; set; }
 
-        public CarService()
+        public CarServ()
         {
             Id = default;
             ServiceDay = default;
@@ -19,7 +19,7 @@
             NextServiceMilage = default;
         }
 
-        public CarService(int id, DateTime serviceDay, DateTime lastService, DateTime nextService, int currentMilage, int nextServiceMilage)
+        public CarServ(int id, DateTime serviceDay, DateTime lastService, DateTime nextService, int currentMilage, int nextServiceMilage)
         {
             Id = id;
             ServiceDay = serviceDay;

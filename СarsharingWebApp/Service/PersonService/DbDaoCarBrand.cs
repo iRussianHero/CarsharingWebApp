@@ -46,7 +46,7 @@ namespace СarsharingWebApp.Service.CarBrandService
 
         public async Task<CarBrand> UpdateAsync(CarBrand carBrand)
         {
-            if (await db.CarBrand.FirstOrDefaultAsync() != null)
+            if (await db.Client.FirstOrDefaultAsync() != null)
             {
                 db.CarBrand.Update(carBrand);
                 await db.SaveChangesAsync();
