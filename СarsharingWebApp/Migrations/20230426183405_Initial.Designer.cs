@@ -12,7 +12,7 @@ using СarsharingWebApp.Model;
 namespace СarsharingWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230426180838_Initial")]
+    [Migration("20230426183405_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
