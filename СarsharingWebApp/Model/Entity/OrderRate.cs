@@ -3,20 +3,20 @@
     public class OrderRate
     {
         public int Id { get; set; }
-        public int OrderCostId { get; set; }
+        public int Cost { get; set; }
         public string Name { get; set; }
 
         public OrderRate()
         {
             Id = default;
-            OrderCostId = default;
+            Cost = default;
             Name = "";
         }
 
-        public OrderRate(int id, int orderCostId, string name)
+        public OrderRate(int id, int cost, string name)
         {
             Id = id;
-            OrderCostId = orderCostId;
+            Cost = cost;
             Name = name;
         }
     }
