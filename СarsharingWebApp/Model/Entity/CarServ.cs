@@ -1,4 +1,6 @@
-﻿namespace СarsharingWebApp.Model.Entity
+﻿using System.Text.Json.Serialization;
+
+namespace СarsharingWebApp.Model.Entity
 {
     public class CarServ
     {
@@ -8,6 +10,11 @@
         public DateTime NextService { get; set; }
         public int CurrentMilage { get; set; }
         public int NextServiceMilage { get; set; }
+
+
+        [JsonIgnore]
+        public Car? Car { get; set; }
+
 
         public CarServ()
         {

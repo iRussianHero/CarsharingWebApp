@@ -6,6 +6,7 @@ namespace СarsharingWebApp.Model.Entity
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
+        public int CarId { get; set; }
         public int OrderRateId { get; set; }
         public DateTime StartRent { get; set; }
         public DateTime StopRent { get; set; }
@@ -13,9 +14,15 @@ namespace СarsharingWebApp.Model.Entity
         public int StopMilage { get; set; }
         public double Account { get; set; }
 
-        public int CarId { get; set; }
+
+
+        [JsonIgnore]
+        public Client? Client { get; set; }
         [JsonIgnore]
         public Car? Car { get; set; }
+        [JsonIgnore]
+        public OrderRate? OrderRate { get; set; }
+
 
 
         public Order()

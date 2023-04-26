@@ -50,10 +50,15 @@ namespace СarsharingWebApp.Migrations
                     b.Property<int>("CarOwnerId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CarServiceId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CarBrandId");
+
+                    b.HasIndex("CarConditionId");
+
+                    b.HasIndex("CarModelId");
+
+                    b.HasIndex("CarOwnerId");
 
                     b.ToTable("Car");
                 });
@@ -121,8 +126,25 @@ namespace СarsharingWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("integer");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -136,6 +158,9 @@ namespace СarsharingWebApp.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CarId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("CurrentMilage")
                         .HasColumnType("integer");
@@ -154,6 +179,8 @@ namespace СarsharingWebApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CarId");
+
                     b.ToTable("CarServ");
                 });
 
@@ -165,11 +192,29 @@ namespace СarsharingWebApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DriverLicense")
-                        .HasColumnType("integer");
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("integer");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -212,23 +257,11 @@ namespace СarsharingWebApp.Migrations
 
                     b.HasIndex("CarId");
 
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("OrderRateId");
+
                     b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("СarsharingWebApp.Model.Entity.OrderCost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Cost")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderCost");
                 });
 
             modelBuilder.Entity("СarsharingWebApp.Model.Entity.OrderRate", b =>
@@ -239,41 +272,63 @@ namespace СarsharingWebApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CarId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("OrderCostId")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.ToTable("OrderRate");
                 });
 
-            modelBuilder.Entity("СarsharingWebApp.Model.Entity.Person", b =>
+            modelBuilder.Entity("СarsharingWebApp.Model.Entity.Car", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.HasOne("СarsharingWebApp.Model.Entity.CarBrand", "CarBrand")
+                        .WithMany()
+                        .HasForeignKey("CarBrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.HasOne("СarsharingWebApp.Model.Entity.CarCondition", "CarCondition")
+                        .WithMany()
+                        .HasForeignKey("CarConditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.HasOne("СarsharingWebApp.Model.Entity.CarModel", "CarModel")
+                        .WithMany()
+                        .HasForeignKey("CarModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.HasOne("СarsharingWebApp.Model.Entity.CarOwner", "CarOwner")
+                        .WithMany()
+                        .HasForeignKey("CarOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Navigation("CarBrand");
 
-                    b.HasKey("Id");
+                    b.Navigation("CarCondition");
 
-                    b.ToTable("Person");
+                    b.Navigation("CarModel");
+
+                    b.Navigation("CarOwner");
+                });
+
+            modelBuilder.Entity("СarsharingWebApp.Model.Entity.CarServ", b =>
+                {
+                    b.HasOne("СarsharingWebApp.Model.Entity.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId");
+
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("СarsharingWebApp.Model.Entity.Order", b =>
@@ -284,7 +339,23 @@ namespace СarsharingWebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("СarsharingWebApp.Model.Entity.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("СarsharingWebApp.Model.Entity.OrderRate", "OrderRate")
+                        .WithMany()
+                        .HasForeignKey("OrderRateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Car");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("OrderRate");
                 });
 #pragma warning restore 612, 618
         }
