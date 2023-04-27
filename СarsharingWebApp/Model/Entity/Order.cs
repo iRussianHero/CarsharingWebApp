@@ -9,10 +9,10 @@ namespace СarsharingWebApp.Model.Entity
         public int CarId { get; set; }
         public int OrderRateId { get; set; }
         public DateTime StartRent { get; set; }
-        public DateTime StopRent { get; set; }
+        public DateTime? StopRent { get; set; }
         public int StartMilage { get; set; }
-        public int StopMilage { get; set; }
-        public double Account { get; set; }
+        public int? StopMilage { get; set; }
+        public double? Account { get; set; }
 
 
 

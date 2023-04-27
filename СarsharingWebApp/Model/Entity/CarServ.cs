@@ -6,7 +6,7 @@ namespace СarsharingWebApp.Model.Entity
     {
         public int Id { get; set; }
         public DateTime ServiceDay { get; set; }
-        public DateTime LastService { get; set; }
+        public DateTime? LastService { get; set; }
         public DateTime NextService { get; set; }
         public int CurrentMilage { get; set; }
         public int NextServiceMilage { get; set; }
