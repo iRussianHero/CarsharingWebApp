@@ -51,7 +51,7 @@ if (!app.Environment.IsDevelopment())
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}");
+    pattern: "{controller=Home}/{action=Index}/{login?}/{password?}");
 
 
 

@@ -5,6 +5,8 @@ using System;
 using СarsharingWebApp.Model.Entity;
 using System.Data;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication;
+using СarsharingWebApp.Service.CarCarOwner;
 
 namespace СarsharingWebApp.Controllers
 {
@@ -13,13 +15,34 @@ namespace СarsharingWebApp.Controllers
 
         public IActionResult Index()
         {
-            var carOwners = async (IDaoCarOwner daoCarOwner) =>
-            {
-                await daoCarOwner.GetAllAsync();
-            };
-
-
             return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login (string username, string password,  string returnUrl)
+        {
+
+            var carOwners = async (IDaoCarOwner daoCarOwner) =>
+            await daoCarOwner.GetAllAsync();
+
+
+
+            if (userCheck == true)
+            {
+
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index");
         }
     }
 }
