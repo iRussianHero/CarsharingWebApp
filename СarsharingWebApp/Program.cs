@@ -50,7 +50,11 @@ if (!app.Environment.IsDevelopment())
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Login}/{username?}/{password?}");
+    pattern: "{controller=Home}/{action=Login}");
+
+/*app.MapControllerRoute(
+    name: "LoginIn",
+    pattern: "{controller=Home}/{action=Login}/{username?}/{password?}");*/
 
 
 app.UseHttpsRedirection();
