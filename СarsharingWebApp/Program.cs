@@ -20,12 +20,11 @@ builder.Services.AddControllers();
 
 //Авторизация с помощью Cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.LoginPath = "/login");
+    .AddCookie(options => options.LoginPath = "/Home/Login");
 builder.Services.AddAuthorization();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddTransient<IDaoCarBrand, DbDaoCarBrand>();
 builder.Services.AddTransient<IDaoCarCondition, DbDaoCarCondition>();
@@ -51,8 +50,7 @@ if (!app.Environment.IsDevelopment())
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{login?}/{password?}");
-
+    pattern: "{controller=Home}/{action=Login}/{login?}/{password?}");
 
 
 app.UseHttpsRedirection();
