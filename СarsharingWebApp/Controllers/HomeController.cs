@@ -61,7 +61,7 @@ namespace СarsharingWebApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
     }
 }
