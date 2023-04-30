@@ -52,9 +52,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Login}");
 
-/*app.MapControllerRoute(
+app.MapControllerRoute(
     name: "LoginIn",
-    pattern: "{controller=Home}/{action=Login}/{username?}/{password?}");*/
+    pattern: "{controller=Home}/{action=Login}/{username}/{password}");
+
+app.MapControllerRoute(
+    name: "LoginIn",
+    pattern: "{controller=Home}/{action=Login}");
 
 
 app.UseHttpsRedirection();

@@ -22,13 +22,15 @@ namespace СarsharingWebApp.Controllers
             this.daoCarOwner = daoCarOwner;
         }
 
+        [HttpGet]
+        [Route("LoginIn")]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        //[Route ("LoginIn")]
+        [Route ("LoginIn")]
         public async Task<IActionResult> Login([FromForm] string username, [FromForm] string password, string returnUrl)
         {
 
