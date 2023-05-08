@@ -48,21 +48,26 @@ if (!app.Environment.IsDevelopment())
 }
 
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Login}");
 
-app.MapControllerRoute(
+/*app.MapControllerRoute(
+    name: "carsharing",
+    pattern: "{controller = Carsharing}/{action = Index}");*/
+
+/*app.MapControllerRoute(
     name: "LoginIn",
     pattern: "{controller=Home}/{action=Login}/{username}/{password}");
 
 app.MapControllerRoute(
     name: "LoginIn",
-    pattern: "{controller=Home}/{action=Login}");
+    pattern: "{controller=Home}/{action=Login}");*/
 
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}");
 
 app.UseRouting();
 
