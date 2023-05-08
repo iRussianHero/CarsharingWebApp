@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
 using OrderApiApp.Service.ClientService;
 using ÑarsharingWebApp.Model;
 using ÑarsharingWebApp.Service.CarOrderService;
@@ -17,11 +13,6 @@ using ÑarsharingWebApp.Service.OrderRateService;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-
-//Àâòîðèçàöèÿ ñ ïîìîùüþ Cookies
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.LoginPath = "/Home/Login");
-builder.Services.AddAuthorization();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -39,15 +30,6 @@ builder.Services.AddTransient<IDaoOrder, DbDaoOrder>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-
 
 /*app.MapControllerRoute(
     name: "carsharing",
@@ -62,18 +44,20 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Login}");*/
 
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+/*app.UseHttpsRedirection();
+app.UseStaticFiles();*/
+
+
+/*app.UseRouting();
+
+app.UseAuthorization();
+app.UseAuthentication();*/
+
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action}");
-
-app.UseRouting();
-
-app.UseAuthorization();
-app.UseAuthentication();
-
-app.MapRazorPages();
 
 app.Run();

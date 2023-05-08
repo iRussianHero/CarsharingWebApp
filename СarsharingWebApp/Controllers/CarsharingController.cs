@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace СarsharingWebApp.Controllers
 {
+    [Authorize]
     public class CarsharingController : Controller
     {
         [HttpGet]
         [Route("carsharing")]
-        [Authorize]
         public IActionResult Index()
         {
             return View();
