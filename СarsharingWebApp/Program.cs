@@ -9,6 +9,7 @@ using ÑarsharingWebApp.Service.CarCarOwner;
 using ÑarsharingWebApp.Service.CarService;
 using ÑarsharingWebApp.Service.CarServService;
 using ÑarsharingWebApp.Service.OrderRateService;
+using ÑarsharingWebApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,9 +28,11 @@ builder.Services.AddTransient<IDaoClient, DbDaoClient>();
 builder.Services.AddTransient<IDaoOrderRate, DbDaoOrderRate>();
 builder.Services.AddTransient<IDaoOrder, DbDaoOrder>();
 
+var startup = new Startup();
+startup.ConfigureServices(builder.Services);
 
 var app = builder.Build();
-
+startup.Configure(app, app.Environment);
 
 /*app.MapControllerRoute(
     name: "carsharing",
@@ -56,8 +59,10 @@ app.UseAuthentication();*/
 
 app.MapRazorPages();
 
-app.MapControllerRoute(
+/*app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action}");
+    pattern: "{controller}/{action}");*/
+
+app.MapDefaultControllerRoute();
 
 app.Run();

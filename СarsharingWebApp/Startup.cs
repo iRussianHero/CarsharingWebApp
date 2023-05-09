@@ -9,11 +9,16 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace СarsharingWebApp
 {
     public class Startup
     {
+        public Startup()
+        {
+            
+        }
         public Startup (IConfiguration configuration)
         {
             Configuration = configuration;
@@ -22,11 +27,19 @@ namespace СarsharingWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
                 options.LoginPath = "/Home/Login";
-            });
+            });*/
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.AccessDeniedPath = "/Index";
+                    options.LoginPath = "/Carsharing/Redirect";
+
+                });
+            services.AddAuthorization();
             services.AddControllersWithViews();
         }
 
@@ -42,6 +55,7 @@ namespace СarsharingWebApp
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -50,12 +64,16 @@ namespace СarsharingWebApp
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            //app.UseSession();
+
+            //app.UseEndpoints();
+
+            /*app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller = Home}/{action = Login}");
-            });
+            });*/
         }
     }
 }

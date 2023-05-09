@@ -42,24 +42,41 @@ namespace СarsharingWebApp.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, username)
+                        new Claim(ClaimTypes.Name, username),
+                        //new Claim(ClaimTypes.Role, "Administrator")
                     };
 
-                    var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                    var authProperties = new AuthenticationProperties
+                    {
+                        
+                    };
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                    var claimsIdentity = new ClaimsIdentity(
+                        claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    return Redirect(returnUrl == null ? "/Carsharing" : returnUrl);
+                    //var claimsIdentity = new ClaimsIdentity(claims, "Login");
+
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity),
+                        authProperties);
+
+                    //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                    //return Redirect(returnUrl == null ? "/Carsharing" : returnUrl);
+                    return RedirectToRoute(new { controller = "Carsharing", action = "Index" });
                 }
             }
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
+        //[HttpPost]
         public async Task<IActionResult> Logout()
         {
+            await Console.Out.WriteLineAsync("Work");
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
     }
 }

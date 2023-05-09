@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Index page";
 }
+
 <h1>This is index page Carsharing</h1>
-<form asp-controller="Home" asp-action="Logout" method="post">
-    <button class="btn btn-primary btn-lg">Logout</button>
-</form>
+
+@*<a href="/Home/Logout" class="btn btn-primary btn-lg">Logout</a>*@
+<a class="btn btn-primary btn-lg" asp-action="Logout" asp-controller="Home">Logout</a>
