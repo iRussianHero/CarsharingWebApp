@@ -18,6 +18,26 @@ namespace СarsharingWebApp.Controllers
             return View();
         }
 
+        public IActionResult CarSearch()
+        {
+            return View();
+        }
+
+        public IActionResult CarAdd()
+        {
+            return View();
+        }
+
+        public IActionResult CarServ()
+        {
+            return View();
+        }
+
+        public IActionResult Other()
+        {
+            return View();
+        }
+
         public IActionResult Redirect()
         {
             return RedirectToRoute(new { controller = "Home", action = "Login" });
