@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderApiApp.Service.ClientService;
 using СarsharingWebApp.Service.CarCarOwner;
+using СarsharingWebApp.Service.CarConditionService;
 
 namespace СarsharingWebApp.Controllers
 {
@@ -15,12 +16,14 @@ namespace СarsharingWebApp.Controllers
         IDaoCar daoCar;
         IDaoCarBrand daoCarBrand;
         IDaoCarModel daoCarModel;
+        IDaoCarCondition daoCarCondition;
 
-        public CarsharingController(IDaoCar daoCar, IDaoCarBrand daoCarBrand, IDaoCarModel daoCarModel)
+        public CarsharingController(IDaoCar daoCar, IDaoCarBrand daoCarBrand, IDaoCarModel daoCarModel, IDaoCarCondition daoCarCondition)
         {
             this.daoCar = daoCar;
             this.daoCarBrand = daoCarBrand;
             this.daoCarModel = daoCarModel;
+            this.daoCarCondition = daoCarCondition;
         }
 
 
@@ -43,6 +46,7 @@ namespace СarsharingWebApp.Controllers
         {
             ViewBag.Brands = await daoCarBrand.GetAllAsync();
             ViewBag.Models = await daoCarModel.GetAllAsync();
+            ViewBag.Conditions = await daoCarCondition.GetAllAsync();
             ViewBag.Car = await daoCar.CarSearchAsync(carNumber, carBrand, carModel);
             ViewBag.Cars = await daoCar.GetAllAsync();
             return View();

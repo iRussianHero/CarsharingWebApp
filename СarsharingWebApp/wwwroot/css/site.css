@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 200px 200px 200px;
+    min-width: 180px;
+    grid-gap: 5px;
+}
