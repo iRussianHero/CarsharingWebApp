@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OrderApiApp.Service.ClientService;
+using СarsharingWebApp.Service.CarCarOwner;
 
 namespace СarsharingWebApp.Controllers
 {
@@ -10,16 +12,25 @@ namespace СarsharingWebApp.Controllers
 
     public class CarsharingController : Controller
     {
+        IDaoCar daoCar;
+
+        public CarsharingController(IDaoCar daoCar)
+        {
+            this.daoCar = daoCar;
+        }
+
+
         [HttpGet]
         [Route("carsharing")]
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
-        public IActionResult CarSearch()
+        public async Task<IActionResult> CarSearchAsync()
         {
+            ViewBag.Cars = await daoCar.GetAllAsync();
             return View();
         }
 

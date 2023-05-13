@@ -6,11 +6,11 @@
     <div align="center" style="width: 600px; height:400px;">
         <h1>Что вы хотите сделать?</h1>
         <br />
-        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-            <button type="button" class="btn btn-primary" asp-action="Logout" asp-controller="Home"> >Найти автомобиль</button>
-            <button type="button" class="btn btn-primary" asp-action="Logout" asp-controller="Home"> >Добавить автомобиль</button>
-            <button type="button" class="btn btn-primary" asp-action="Logout" asp-controller="Home"> >Обслуживание</button>
-            <button type="button" class="btn btn-primary" asp-action="Logout" asp-controller="Home"> >Служебное...</button>
+        <div class="list-group">
+            <a asp-action="CarSearch" asp-controller="Carsharing" class="list-group-item list-group-item-action">Найти автомобиль</a>
+            <a asp-action="CarAdd" asp-controller="Carsharing" class="list-group-item list-group-item-action">Добавить автомобиль</a>
+            <a asp-action="CarServ" asp-controller="Carsharing" class="list-group-item list-group-item-action">Обслуживание</a>
+            <a asp-action="Logout" asp-controller="Carsharing" class="list-group-item list-group-item-action">Служебное</a>
         </div>
     </div>
 </div>
