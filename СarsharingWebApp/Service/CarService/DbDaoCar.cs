@@ -55,18 +55,18 @@ namespace СarsharingWebApp.Service.CarService
                     result.Add(carNumberResult);
                 }
             }
-            if (carBrand != null && carModel != null)
+            if (carBrand != null)
             {
-                var carNumberResult = await db.Car.FirstOrDefaultAsync(p => p.CarBrandId == carBrand && p.CarModelId == carModel);
-                if (carNumberResult != null)
+                var carNumberResult = await db.Car.FirstOrDefaultAsync(p => p.CarBrandId == carBrand);
+                if (carNumberResult != null && result.Contains(carNumberResult) == false)
                 {
                     result.Add(carNumberResult);
                 }
             }
-            if (carBrand != null)
+            if (carModel != null)
             {
-                var carNumberResult = await db.Car.FirstOrDefaultAsync(p => p.CarBrandId == carBrand);
-                if (carNumberResult != null)
+                var carNumberResult = await db.Car.FirstOrDefaultAsync(p => p.CarModelId == carModel);
+                if (carNumberResult != null && result.Contains(carNumberResult) == false)
                 {
                     result.Add(carNumberResult);
                 }
