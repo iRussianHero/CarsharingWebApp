@@ -3,7 +3,7 @@
 }
 
 <div align="center">
-    <form asp-controller="Home" asp-action="Login" method="post">
+    <form asp-controller="Carsharing" asp-action="CarSearch" method="post">
         <div align="center" style="width: 600px">
             <h1>Поиск автомобиля</h1>
             <br />
@@ -13,16 +13,24 @@
             <div>
                 <select class="form-select" name="carBrand" aria-label="carBrand">
                     <option selected>Выберите марку</option>
-                    <option value="1">One</option>
+                    @foreach (var carBrand in @ViewBag.Brands)
+                    {
+                        <option name="carBrandId" value="@carBrand.Id">@carBrand.Name</option>
+                    }
+@*                    <option value="1">One</option>
                     <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="3">Three</option>*@
                 </select>
                 <br />
                 <select class="form-select" name="carModel" aria-label="carModel">
                     <option selected>Выберите модель</option>
-                    <option value="1">One</option>
+                    @foreach (var carModel in @ViewBag.Models)
+                    {
+                        <option name="carModellId" value="@carModel.Id">@carModel.Name</option>
+                    }
+@*                    <option value="1">One</option>
                     <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="3">Three</option>*@
                 </select>
                 <br />
             </div>
@@ -32,23 +40,26 @@
 
     <br />
     
-    <div class="flex-container">
-        @foreach (var car in @ViewBag.Cars)
-        {
-            <div class="card" style="width: 160px;">
-                <div class="card-body">
-                    <div class="card-header"><h5 class="card-title">@car.CarNumber</h5></div>
-                    <p class="card-text">
-                        Марка: @car.CarBrandId
-                        Модель: @car.CarModelId
-                        Пробег: @car.CarMilage
-                        Владелец: @car.CarOwnerId
-                    </p>
-                    @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+    @if (ViewBag.Cars != null)
+    {
+        <div class="flex-container">
+            @foreach (var car in @ViewBag.Cars)
+            {
+                <div class="card" style="width: 160px;">
+                    <div class="card-body">
+                        <div class="card-header"><h5 class="card-title">@car.CarNumber</h5></div>
+                        <p class="card-text">
+                            Марка: @car.CarBrandId
+                            Модель: @car.CarModelId
+                            Пробег: @car.CarMilage
+                            Владелец: @car.CarOwnerId
+                        </p>
+                        @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
                 </div>
-            </div>
-        }
-        <br />
-        <br />
-    </div>
+            }
+            <br />
+            <br />
+        </div>
+    }
 </div>

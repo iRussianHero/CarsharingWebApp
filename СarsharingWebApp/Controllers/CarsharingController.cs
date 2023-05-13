@@ -13,10 +13,14 @@ namespace СarsharingWebApp.Controllers
     public class CarsharingController : Controller
     {
         IDaoCar daoCar;
+        IDaoCarBrand daoCarBrand;
+        IDaoCarModel daoCarModel;
 
-        public CarsharingController(IDaoCar daoCar)
+        public CarsharingController(IDaoCar daoCar, IDaoCarBrand daoCarBrand, IDaoCarModel daoCarModel)
         {
             this.daoCar = daoCar;
+            this.daoCarBrand = daoCarBrand;
+            this.daoCarModel = daoCarModel;
         }
 
 
@@ -30,9 +34,16 @@ namespace СarsharingWebApp.Controllers
 
         public async Task<IActionResult> CarSearchAsync()
         {
-            ViewBag.Cars = await daoCar.GetAllAsync();
+            ViewBag.Brands = await daoCarBrand.GetAllAsync();
+            ViewBag.Models = await daoCarModel.GetAllAsync();
             return View();
         }
+
+/*        public async Task<IActionResult> CarSearchAsync(int chtoto)
+        {
+            ViewBag.Cars = await daoCar.GetAllAsync();
+            return View();
+        }*/
 
         public IActionResult CarAdd()
         {
