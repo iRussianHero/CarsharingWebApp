@@ -32,18 +32,21 @@ namespace СarsharingWebApp.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CarSearchAsync()
+/*        public async Task<IActionResult> CarSearchAsync()
         {
             ViewBag.Brands = await daoCarBrand.GetAllAsync();
             ViewBag.Models = await daoCarModel.GetAllAsync();
             return View();
-        }
+        }*/
 
-/*        public async Task<IActionResult> CarSearchAsync(int chtoto)
+        public async Task<IActionResult> CarSearchAsync(string? carNumber, int? carBrand, int? carModel)
         {
+            ViewBag.Brands = await daoCarBrand.GetAllAsync();
+            ViewBag.Models = await daoCarModel.GetAllAsync();
+            ViewBag.Car = await daoCar.CarSearchAsync(carNumber, carBrand, carModel);
             ViewBag.Cars = await daoCar.GetAllAsync();
             return View();
-        }*/
+        }
 
         public IActionResult CarAdd()
         {

@@ -16,5 +16,10 @@
             Id = id;
             Name = name;
         }
+
+        public static implicit operator CarBrand?(int? v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

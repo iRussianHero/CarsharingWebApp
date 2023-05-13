@@ -9,5 +9,6 @@ namespace OrderApiApp.Service.ClientService
         Task<Car> UpdateAsync(Car car);
         Task<Car> DeleteAsync(Car car);
         Task<Car> GetAsync(Car car);
+        Task<List<Car>> CarSearchAsync(string? carNumber, int? carBrand, int? carModel);
     }
 }

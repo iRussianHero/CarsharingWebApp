@@ -26,9 +26,9 @@
                     <option selected>Выберите модель</option>
                     @foreach (var carModel in @ViewBag.Models)
                     {
-                        <option name="carModellId" value="@carModel.Id">@carModel.Name</option>
+                        <option name="carModelId" value="@carModel.Id">@carModel.Name</option>
                     }
-@*                    <option value="1">One</option>
+                    @*                    <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>*@
                 </select>
@@ -39,10 +39,33 @@
     </form>
 
     <br />
-    
-    @if (ViewBag.Cars != null)
+
+    @*@if (ViewBag.Car != null)*@
+    @if (((IEnumerable<dynamic>)ViewBag.Car).Count() > 0)
     {
-        <div class="flex-container">
+        <div>
+            @foreach (var car in @ViewBag.Car)
+            {
+                <div class="card" style="width: 160px;">
+                    <div class="card-body">
+                        <div class="card-header"><h5 class="card-title">@car.CarNumber</h5></div>
+                        <p class="card-text">
+                            Марка: @car.CarBrandId
+                            Модель: @car.CarModelId
+                            Пробег: @car.CarMilage
+                            Владелец: @car.CarOwnerId
+                        </p>
+                        @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+                    </div>
+                </div>
+            }
+            <br />
+            <br />
+        </div>
+    }
+    else
+    {
+        <div >
             @foreach (var car in @ViewBag.Cars)
             {
                 <div class="card" style="width: 160px;">
